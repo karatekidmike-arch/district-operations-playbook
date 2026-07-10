@@ -20,14 +20,9 @@ create table if not exists public.invoices (
 alter table public.stores enable row level security;
 alter table public.invoices enable row level security;
 
-create policy "authenticated users can read stores"
-on public.stores for select to authenticated using (true);
-
-create policy "authenticated users can read invoices"
-on public.invoices for select to authenticated using (true);
-
-create policy "authenticated users can insert invoices"
-on public.invoices for insert to authenticated with check (true);
+create policy "public demo can read stores" on public.stores for select using (true);
+create policy "public demo can read invoices" on public.invoices for select using (true);
+create policy "public demo can insert invoices" on public.invoices for insert with check (true);
 
 insert into public.stores (id,name,concept,sales_goal,labor_goal,cogs_goal) values
 ('354879','National City','Dunkin',250000,24.5,28),
